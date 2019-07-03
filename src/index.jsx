@@ -4,12 +4,21 @@ import './index.css';
 import './components/App';
 import * as serviceWorker from './serviceWorker';
 import App from "./components/App";
+import 'semantic-ui-css/semantic.min.css';
+import { HashRouter} from "react-router-dom";
 
 
-
-// var heading = React.createElement('h1', {}, 'Help Queue');
-// var clock = React.createElement('h2', {},`It is ${new Date().toLocaleTimeString()}`);
-// var app = React.createElement('div', {}, heading);
+const render = (Component) => {
+    ReactDOM.render(
+        // eslint-disable-next-line react/jsx-no-undef
+        <AppContainer>
+            <HashRouter>
+                <Component/>
+            </HashRouter>
+        </AppContainer>,
+    document.getElementById('root')
+    )
+}
 
 ReactDOM.render(
     <App />,
