@@ -2,20 +2,39 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Image } from 'semantic-ui-react'
 
-function Ticket(props) {
-    return (
-        <div>
 
+function Ticket(props) {
+    const ticketInformation =
+        <div>
             <h3>{props.location} - {props.names}</h3>
-            <p><em>{props.issue}</em></p>
+            <h4>{props.formattedWaitTime}</h4>
             <hr/>
-        </div>
-    );
+        </div>;
+    if(props.currentRouterPath === '/admin') {
+        return(
+            <div onClick={() => {props.onTicketSelection(props.ticketId);}}>
+                {ticketInformation}
+            </div>
+        );
+    }else {
+        return(
+            <div>
+                {ticketInformation}
+            </div>
+        );
+    }
+
 }
 
+
+
 Ticket.propTypes = {
-    names: PropTypes.string,
-    location: PropTypes.string,
-    issue: PropTypes.string
+    names: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    issue: PropTypes.string,
+    formattedWaitTime: PropTypes.string.isRequired,
+    currentRouterPath: PropTypes.string,
+    onTicketSelection: PropTypes.func,
+    ticketId: PropTypes.string.isRequired
 };
 export default Ticket;
